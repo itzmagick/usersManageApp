@@ -1,0 +1,12 @@
+Ce projet est un petit programme en Python qui s'exécute dans le 
+terminal en lançant le fichier application avec la 
+commande :
+python application.py
+
+Mais comme le programme utilise SQLite3, il faut d'abord aller dans 
+le dossier data et exécuter le fichier data avec la 
+commande :
+python data.py
+
+NB : Ce programme n'est pas fini, il est en cours de développement.
+Vous pouvez donc rencontrer des erreurs dans la navigation.
