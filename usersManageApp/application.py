@@ -6,9 +6,9 @@ match valeurChoix:
     case '1':
         from core.login import Recuperation_data       
     case '2':
-        from core.sign import Sigin      
-        choixValeur = Show_acceuil()
-        
+        from core.sign import Sigin 
+        print('Connectez vous')    
+        from core.login import Recuperation_data
 
 
             
