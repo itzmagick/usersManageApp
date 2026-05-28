@@ -1,7 +1,7 @@
 Ce projet est un petit programme en Python qui s'exécute dans le 
-terminal en lançant le fichier application avec la 
+terminal en lançant le fichier run avec la 
 commande :
-python application.py
+python run.py
 
 Mais comme le programme utilise SQLite3, il faut d'abord aller dans 
 le dossier data et exécuter le fichier data avec la 
