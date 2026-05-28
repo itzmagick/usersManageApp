@@ -1,9 +1,7 @@
 import os
 import sqlite3
 from core.filter import Filter_data, Filter_name
-from core.insert import Insert, Insert_Name
-from core.Actual_name import Actual_name
-from core.update_name import Update_name
+from core.insert import Insert_Name
 from core.select import select_all
 from core.entryData import Update_names
 
@@ -71,15 +69,37 @@ def AllTache(choix):
                             
             case '3':
                 print('Etes-vous sûr de vouloir supprimer votre compte ?')
-                choix = input('Tapez ( OUI ) si oui et ( NON ) si non : ')
+                choixx = input('Tapez ( OUI ) si oui et ( NON ) si non : ')
 
-                if choix:
-                    clean_choix = choix.lower().strip()
+                if choixx:
+                    clean_choix = choixx.lower().strip()
                     if clean_choix == 'oui':               
+                        def Delete(email, password):
+                            db_root_setting = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                            db = os.path.join(db_root_setting, 'data', 'data_base')
+                            conx = sqlite3.connect(db)
+                            cursor = conx.cursor()
+
+                            try:
+                                query = 'DELETE FROM users WHERE email= ? AND password= ?'
+                                cursor.execute(query, (email, password))
+                                conx.commit()
+                            except sqlite3.Error as e:
+                                print(f'Erreur lors de la suppression: {e}')
+                            finally:
+                                if conx:
+                                    conx.close()
+                            return True
+                            
                         mailEntryVerificationForDeleteAccount = input('Entrez votre mail: ')
                         passwordEntryVerificationForDeleteAccount = input('Entrez votre mot de passe: ')
+                        email_clean, password_cln = Filter_data(mailEntryVerificationForDeleteAccount, passwordEntryVerificationForDeleteAccount)
+                        status = Delete(email_clean, password_cln)
+                        if status:
+                            print("L'utilisateur a été supprimer avec succès")
+                            
                     else:
-                        print(f'Merci de rester parmi nous, {0}')
+                        print(f'Merci de rester parmi nous')
                         exit()
     else:
         print('Donnez le numéro de la fonctionnalité (ex: 1, etc...)')
